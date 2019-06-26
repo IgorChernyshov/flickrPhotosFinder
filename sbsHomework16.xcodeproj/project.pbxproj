@@ -8,24 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		9C1849E922BF5568006A31BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1849E822BF5568006A31BB /* AppDelegate.m */; };
-		9C1849EC22BF5568006A31BB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1849EB22BF5568006A31BB /* ViewController.m */; };
-		9C1849EF22BF5568006A31BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C1849ED22BF5568006A31BB /* Main.storyboard */; };
+		9C1849EC22BF5568006A31BB /* SBSFlickrCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1849EB22BF5568006A31BB /* SBSFlickrCollectionViewController.m */; };
 		9C1849F122BF556A006A31BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C1849F022BF556A006A31BB /* Assets.xcassets */; };
 		9C1849F422BF556A006A31BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C1849F222BF556A006A31BB /* LaunchScreen.storyboard */; };
 		9C1849F722BF556A006A31BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1849F622BF556A006A31BB /* main.m */; };
+		9C1849FF22BF6224006A31BB /* SBSFlickrPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1849FE22BF6224006A31BB /* SBSFlickrPhotoCell.m */; };
+		9C184A0822BF6648006A31BB /* NetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C184A0722BF6648006A31BB /* NetworkService.m */; };
+		9C184A0B22BF669A006A31BB /* NetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C184A0A22BF669A006A31BB /* NetworkHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9C1849E422BF5568006A31BB /* sbsHomework16.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sbsHomework16.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C1849E722BF5568006A31BB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9C1849E822BF5568006A31BB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9C1849EA22BF5568006A31BB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9C1849EB22BF5568006A31BB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		9C1849EE22BF5568006A31BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9C1849EA22BF5568006A31BB /* SBSFlickrCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBSFlickrCollectionViewController.h; sourceTree = "<group>"; };
+		9C1849EB22BF5568006A31BB /* SBSFlickrCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBSFlickrCollectionViewController.m; sourceTree = "<group>"; };
 		9C1849F022BF556A006A31BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C1849F322BF556A006A31BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C1849F522BF556A006A31BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C1849F622BF556A006A31BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9C1849FD22BF6224006A31BB /* SBSFlickrPhotoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBSFlickrPhotoCell.h; sourceTree = "<group>"; };
+		9C1849FE22BF6224006A31BB /* SBSFlickrPhotoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBSFlickrPhotoCell.m; sourceTree = "<group>"; };
+		9C184A0522BF65D7006A31BB /* NetworkServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkServiceProtocol.h; sourceTree = "<group>"; };
+		9C184A0622BF6648006A31BB /* NetworkService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkService.h; sourceTree = "<group>"; };
+		9C184A0722BF6648006A31BB /* NetworkService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkService.m; sourceTree = "<group>"; };
+		9C184A0922BF669A006A31BB /* NetworkHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkHelper.h; sourceTree = "<group>"; };
+		9C184A0A22BF669A006A31BB /* NetworkHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,17 +66,63 @@
 		9C1849E622BF5568006A31BB /* sbsHomework16 */ = {
 			isa = PBXGroup;
 			children = (
+				9C184A0022BF622C006A31BB /* Core */,
+				9C184A0122BF6241006A31BB /* Flow */,
+				9C184A0322BF6261006A31BB /* SupportingFiles */,
+			);
+			path = sbsHomework16;
+			sourceTree = "<group>";
+		};
+		9C184A0022BF622C006A31BB /* Core */ = {
+			isa = PBXGroup;
+			children = (
 				9C1849E722BF5568006A31BB /* AppDelegate.h */,
 				9C1849E822BF5568006A31BB /* AppDelegate.m */,
-				9C1849EA22BF5568006A31BB /* ViewController.h */,
-				9C1849EB22BF5568006A31BB /* ViewController.m */,
-				9C1849ED22BF5568006A31BB /* Main.storyboard */,
+				9C184A0422BF65B5006A31BB /* Services */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		9C184A0122BF6241006A31BB /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				9C184A0222BF624F006A31BB /* View */,
+			);
+			name = Flow;
+			sourceTree = "<group>";
+		};
+		9C184A0222BF624F006A31BB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9C1849EA22BF5568006A31BB /* SBSFlickrCollectionViewController.h */,
+				9C1849EB22BF5568006A31BB /* SBSFlickrCollectionViewController.m */,
+				9C1849FD22BF6224006A31BB /* SBSFlickrPhotoCell.h */,
+				9C1849FE22BF6224006A31BB /* SBSFlickrPhotoCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		9C184A0322BF6261006A31BB /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
 				9C1849F022BF556A006A31BB /* Assets.xcassets */,
 				9C1849F222BF556A006A31BB /* LaunchScreen.storyboard */,
 				9C1849F522BF556A006A31BB /* Info.plist */,
 				9C1849F622BF556A006A31BB /* main.m */,
 			);
-			path = sbsHomework16;
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		9C184A0422BF65B5006A31BB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9C184A0522BF65D7006A31BB /* NetworkServiceProtocol.h */,
+				9C184A0622BF6648006A31BB /* NetworkService.h */,
+				9C184A0722BF6648006A31BB /* NetworkService.m */,
+				9C184A0922BF669A006A31BB /* NetworkHelper.h */,
+				9C184A0A22BF669A006A31BB /* NetworkHelper.m */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,7 +184,6 @@
 			files = (
 				9C1849F422BF556A006A31BB /* LaunchScreen.storyboard in Resources */,
 				9C1849F122BF556A006A31BB /* Assets.xcassets in Resources */,
-				9C1849EF22BF5568006A31BB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,23 +194,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C1849EC22BF5568006A31BB /* ViewController.m in Sources */,
+				9C1849FF22BF6224006A31BB /* SBSFlickrPhotoCell.m in Sources */,
+				9C1849EC22BF5568006A31BB /* SBSFlickrCollectionViewController.m in Sources */,
+				9C184A0B22BF669A006A31BB /* NetworkHelper.m in Sources */,
 				9C1849F722BF556A006A31BB /* main.m in Sources */,
 				9C1849E922BF5568006A31BB /* AppDelegate.m in Sources */,
+				9C184A0822BF6648006A31BB /* NetworkService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		9C1849ED22BF5568006A31BB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9C1849EE22BF5568006A31BB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9C1849F222BF556A006A31BB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

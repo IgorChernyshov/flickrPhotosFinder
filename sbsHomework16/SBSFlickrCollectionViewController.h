@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
 
+@interface SBSFlickrCollectionViewController : UIViewController
 
 @end
 
