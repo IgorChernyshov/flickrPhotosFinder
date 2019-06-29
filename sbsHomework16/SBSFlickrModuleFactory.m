@@ -9,6 +9,7 @@
 #import "SBSFlickrModuleFactory.h"
 #import "NetworkService.h"
 #import "LocalNotificationsService.h"
+#import "SearchHistoryService.h"
 
 
 @implementation SBSFlickrModuleFactory
@@ -17,12 +18,15 @@
 {
 	NetworkService *networkService = [NetworkService new];
 	LocalNotificationsService *notificationService = [LocalNotificationsService new];
+	SearchHistoryService *searchHistoryService = [SearchHistoryService new];
 	SBSFlickrCollectionViewController *flickrViewController;
 	
 	flickrViewController = [[SBSFlickrCollectionViewController alloc] initWithNetworkService:networkService
-																   notificationService:notificationService];
+																		 notificationService:notificationService
+																		searchHistoryService:searchHistoryService];
 	networkService.output = flickrViewController;
 	notificationService.output = flickrViewController;
+	searchHistoryService.output = flickrViewController;
 	
 	return flickrViewController;
 }
