@@ -9,19 +9,26 @@
 #import "SBSFlickrCollectionViewController.h"
 #import "SBSFlickrPhotoCell.h"
 #import "NetworkService.h"
+#import "LocalNotificationsService.h"
+@import UserNotifications;
 
 
-static NSString * const reuseID = @"collectionViewCellReuseID";
+static NSString * const reuseID = @"flickrCellReuseID";
 static const CGFloat cellInsets = 16.f;
 
 
-@interface SBSFlickrCollectionViewController () <NetworkServiceOutputProtocol, UISearchBarDelegate, UICollectionViewDataSource>
+@interface SBSFlickrCollectionViewController () <UISearchBarDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NetworkService *networkService;
+
 @property (nonatomic, strong) NSMutableArray<UIImage *> *images;
+@property (nonatomic, assign) NSInteger numberOfImagesFound;
+@property (nonatomic, copy) NSString *lastSearch;
+
+@property (nonatomic, strong) NetworkService *networkService;
+@property (nonatomic, strong) LocalNotificationsService *notificationService;
 
 @end
 
@@ -31,17 +38,25 @@ static const CGFloat cellInsets = 16.f;
 
 #pragma mark - Lifecycle
 
-- (instancetype)init
+- (instancetype)initWithNetworkService:(NetworkService *)networkService
+				   notificationService:(LocalNotificationsService *)notificationService
 {
 	self = [super init];
 	if (self) {
+		_networkService = networkService;
+		_notificationService = notificationService;
+		_images = [NSMutableArray new];
+		
 		[self createUI];
 		[self setupConstraints];
-		_networkService = [NetworkService new];
-		_networkService.output = self;
-		_images = [NSMutableArray new];
 	}
 	return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[self.notificationService applicationStarted];
 }
 
 
@@ -69,6 +84,9 @@ static const CGFloat cellInsets = 16.f;
 	searchBar.delegate = self;
 	searchBar.barTintColor = [UIColor blueColor];
 	searchBar.placeholder = @"Search photos...";
+	searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+	searchBar.spellCheckingType = UITextSpellCheckingTypeNo;
+	searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	return searchBar;
 }
 
@@ -127,6 +145,7 @@ static const CGFloat cellInsets = 16.f;
 	[self.collectionView reloadData];
 	[self.searchBar resignFirstResponder];
 	[self.spinner startAnimating];
+	self.lastSearch = searchBar.text;
 	[self.networkService findFlickrPhotosWithSearchString:searchBar.text];
 }
 
@@ -151,8 +170,38 @@ static const CGFloat cellInsets = 16.f;
 - (void)downloadFinishedWithImage:(UIImage *)image
 {
 	[self.images addObject:image];
+	if (self.images.count >= self.numberOfImagesFound)
+	{
+		[self scheduleNotification];
+	}
 	[self.spinner stopAnimating];
 	[self.collectionView reloadData];
+}
+
+- (void)searchFinishedWithNumberOfImages:(NSUInteger)numberOfImages
+{
+	self.numberOfImagesFound = numberOfImages;
+}
+
+
+#pragma mark - LocalNotificationsOutputProtocol
+
+- (void)scheduleNotification
+{
+	NSUInteger randomImageNumber = arc4random_uniform((uint32_t)self.images.count);
+	[self.notificationService scheduleNotificationWithText:self.lastSearch
+												  andImage:self.images[randomImageNumber]];
+}
+
+- (void)showNoPermissionsAlert
+{
+	UIAlertController *alert;
+	alert = [UIAlertController alertControllerWithTitle:@"So sad 😢"
+												message:@"U won't see our ql notifications"
+										 preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"Whatever" style:UIAlertActionStyleDefault handler:nil];
+	[alert addAction:dismiss];
+	[self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

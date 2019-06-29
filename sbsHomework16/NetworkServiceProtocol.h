@@ -12,6 +12,7 @@
 @protocol NetworkServiceOutputProtocol <NSObject>
 
 - (void)downloadFinishedWithImage:(UIImage *)image;
+- (void)searchFinishedWithNumberOfImages:(NSUInteger)numberOfImages;
 
 @end
 

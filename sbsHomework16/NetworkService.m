@@ -38,6 +38,7 @@
 														   }
 														   NSDictionary *temp = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 														   NSArray<NSURL *> *urls = [self photoURLWithData:temp];
+														   [self.output searchFinishedWithNumberOfImages:urls.count];
 														   [self downloadImagesWithURLs:urls];
 													   }];
 	[sessionDataTask resume];
@@ -83,4 +84,3 @@
 }
 
 @end
-
