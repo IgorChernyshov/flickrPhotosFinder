@@ -11,7 +11,6 @@
 
 @interface SBSFlickrPhotoCell ()
 
-@property (nonatomic, strong) UIImageView *blurredBackgroundView;
 @property (nonatomic, strong) UIImageView *imageView;
 
 @end
@@ -26,10 +25,6 @@
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-		_blurredBackgroundView = [self createBlurredBackgroundView];
-		_blurredBackgroundView.contentMode = UIViewContentModeScaleToFill;
-		[self.contentView addSubview:_blurredBackgroundView];
-		
 		_imageView = [self createImageView];
 		_imageView.contentMode = UIViewContentModeScaleAspectFit;
 		[self.contentView addSubview:_imageView];
@@ -41,7 +36,6 @@
 
 - (void)prepareForReuse
 {
-	self.blurredBackgroundView.image = nil;
 	self.imageView.image = nil;
 }
 
@@ -65,11 +59,6 @@
 - (void)setupConstraints
 {
 	[self.contentView addConstraints:@[
-									   [_blurredBackgroundView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor],
-									   [_blurredBackgroundView.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor],
-									   [_blurredBackgroundView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],
-									   [_blurredBackgroundView.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor],
-									   
 									   [_imageView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor],
 									   [_imageView.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor],
 									   [_imageView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],

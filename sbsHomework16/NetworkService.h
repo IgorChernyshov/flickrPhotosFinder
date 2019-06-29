@@ -13,9 +13,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface NetworkService : NSObject<NetworkServiceInputProtocol, NSURLSessionDelegate>
+@interface NetworkService : NSObject <NetworkServiceInputProtocol, NSURLSessionDelegate>
 
-@property (nonatomic, weak) id<NetworkServiceOutputProtocol> output; /**< Делегат внешних событий */
+@property (nonatomic, weak) id<NetworkServiceOutputProtocol> output;
 
 @end
 

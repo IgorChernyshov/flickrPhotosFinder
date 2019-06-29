@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetworkServiceProtocol.h"
+#import "LocalNotificationsProtocol.h"
+@class NetworkService;
+@class LocalNotificationsService;
 
 
-@interface SBSFlickrCollectionViewController : UIViewController
+@interface SBSFlickrCollectionViewController : UIViewController <NetworkServiceOutputProtocol, LocalNotificationsOutputProtocol>
+
+- (instancetype)initWithNetworkService:(NetworkService *)networkService
+				   notificationService:(LocalNotificationsService *)notificationService;
 
 @end
 

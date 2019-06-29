@@ -8,14 +8,25 @@
 
 #import "AppDelegate.h"
 #import "SBSFlickrCollectionViewController.h"
+#import "NetworkService.h"
+#import "LocalNotificationsService.h"
 
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	
 	CGRect screenFrame = [[UIScreen mainScreen] bounds];
-	UIViewController *viewController = [SBSFlickrCollectionViewController new];
+	NetworkService *networkService = [NetworkService new];
+	LocalNotificationsService *notificationService = [LocalNotificationsService new];
+	
+	SBSFlickrCollectionViewController *viewController;
+	viewController = [[SBSFlickrCollectionViewController alloc] initWithNetworkService:networkService
+																   notificationService:notificationService];
+	networkService.output = viewController;
+	notificationService.output = viewController;
+	
 	self.window = [[UIWindow alloc] initWithFrame:screenFrame];
 	self.window.rootViewController = viewController;
 	
