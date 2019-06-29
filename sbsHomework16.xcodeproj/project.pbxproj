@@ -16,6 +16,7 @@
 		9C184A0822BF6648006A31BB /* NetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C184A0722BF6648006A31BB /* NetworkService.m */; };
 		9C184A0B22BF669A006A31BB /* NetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C184A0A22BF669A006A31BB /* NetworkHelper.m */; };
 		9C184A1522C33909006A31BB /* LocalNotificationsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C184A1422C33909006A31BB /* LocalNotificationsService.m */; };
+		9C184A6B22C7643A006A31BB /* SBSFlickrModuleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C184A6A22C7643A006A31BB /* SBSFlickrModuleFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		9C184A1322C33909006A31BB /* LocalNotificationsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalNotificationsService.h; sourceTree = "<group>"; };
 		9C184A1422C33909006A31BB /* LocalNotificationsService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalNotificationsService.m; sourceTree = "<group>"; };
 		9C184A6822C75754006A31BB /* LocalNotificationsProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalNotificationsProtocol.h; sourceTree = "<group>"; };
+		9C184A6922C7643A006A31BB /* SBSFlickrModuleFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBSFlickrModuleFactory.h; sourceTree = "<group>"; };
+		9C184A6A22C7643A006A31BB /* SBSFlickrModuleFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBSFlickrModuleFactory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,7 @@
 		9C184A0122BF6241006A31BB /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				9C184A6D22C76447006A31BB /* Factory */,
 				9C184A0C22C337B7006A31BB /* Controller */,
 				9C184A0222BF624F006A31BB /* View */,
 			);
@@ -154,6 +158,15 @@
 				9C184A1422C33909006A31BB /* LocalNotificationsService.m */,
 			);
 			name = LocalNotifications;
+			sourceTree = "<group>";
+		};
+		9C184A6D22C76447006A31BB /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				9C184A6922C7643A006A31BB /* SBSFlickrModuleFactory.h */,
+				9C184A6A22C7643A006A31BB /* SBSFlickrModuleFactory.m */,
+			);
+			name = Factory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +242,7 @@
 				9C1849EC22BF5568006A31BB /* SBSFlickrCollectionViewController.m in Sources */,
 				9C184A0B22BF669A006A31BB /* NetworkHelper.m in Sources */,
 				9C184A1522C33909006A31BB /* LocalNotificationsService.m in Sources */,
+				9C184A6B22C7643A006A31BB /* SBSFlickrModuleFactory.m in Sources */,
 				9C1849F722BF556A006A31BB /* main.m in Sources */,
 				9C1849E922BF5568006A31BB /* AppDelegate.m in Sources */,
 				9C184A0822BF6648006A31BB /* NetworkService.m in Sources */,
