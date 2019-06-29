@@ -10,25 +10,31 @@
 #import "SBSFlickrPhotoCell.h"
 #import "NetworkService.h"
 #import "LocalNotificationsService.h"
+#import "SearchHistoryService.h"
 @import UserNotifications;
 
 
-static NSString * const reuseID = @"flickrCellReuseID";
+static NSString * const SBSImagesCollectionReuseID = @"flickrCellReuseID";
+static NSString * const SBSSearchHistoryReuseID = @"searchHistoryReuseID";
 static const CGFloat cellInsets = 16.f;
+static const CGFloat cellHeight = 40.f;
 
 
-@interface SBSFlickrCollectionViewController () <UISearchBarDelegate, UICollectionViewDataSource>
+@interface SBSFlickrCollectionViewController () <UISearchBarDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) UITableView *searchHistoryTableView;
 
+@property (nonatomic, strong) NSArray<NSString *> *searchSuggestions;
 @property (nonatomic, strong) NSMutableArray<UIImage *> *images;
 @property (nonatomic, assign) NSInteger numberOfImagesFound;
 @property (nonatomic, copy) NSString *lastSearch;
 
 @property (nonatomic, strong) NetworkService *networkService;
 @property (nonatomic, strong) LocalNotificationsService *notificationService;
+@property (nonatomic, strong) SearchHistoryService *searchHistoryService;
 
 @end
 
@@ -40,11 +46,13 @@ static const CGFloat cellInsets = 16.f;
 
 - (instancetype)initWithNetworkService:(NetworkService *)networkService
 				   notificationService:(LocalNotificationsService *)notificationService
+				  searchHistoryService:(SearchHistoryService *)searchHistoryService;
 {
 	self = [super init];
 	if (self) {
 		_networkService = networkService;
 		_notificationService = notificationService;
+		_searchHistoryService = searchHistoryService;
 		_images = [NSMutableArray new];
 		
 		[self createUI];
@@ -74,6 +82,9 @@ static const CGFloat cellInsets = 16.f;
 	
 	_spinner = [self createSpinner];
 	[self.view addSubview:_spinner];
+	
+	_searchHistoryTableView = [self createSearchHistoryTableView];
+	[self.view addSubview:_searchHistoryTableView];
 }
 
 - (UISearchBar *)createSearchBar
@@ -110,9 +121,24 @@ static const CGFloat cellInsets = 16.f;
 	collectionView.translatesAutoresizingMaskIntoConstraints = NO;
 	collectionView.contentInset = UIEdgeInsetsMake(cellInsets, cellInsets, cellInsets, cellInsets);
 	collectionView.dataSource = self;
-	[collectionView registerClass:[SBSFlickrPhotoCell class] forCellWithReuseIdentifier:reuseID];
+	[collectionView registerClass:[SBSFlickrPhotoCell class] forCellWithReuseIdentifier:SBSImagesCollectionReuseID];
 	collectionView.backgroundColor = [UIColor whiteColor];
 	return collectionView;
+}
+
+- (UITableView *)createSearchHistoryTableView
+{
+	UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+	[tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:SBSSearchHistoryReuseID];
+	tableView.translatesAutoresizingMaskIntoConstraints = NO;
+	tableView.delegate = self;
+	tableView.dataSource = self;
+	tableView.hidden = YES;
+	tableView.backgroundColor = [UIColor clearColor];
+	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+	tableView.estimatedRowHeight = cellHeight;
+	tableView.bounces = NO;
+	return tableView;
 }
 
 - (void)setupConstraints
@@ -132,7 +158,12 @@ static const CGFloat cellInsets = 16.f;
 								 [_collectionView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
 								 [_collectionView.topAnchor constraintEqualToAnchor:_searchBar.bottomAnchor],
 								 [_collectionView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
-								 [_collectionView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]
+								 [_collectionView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
+								 
+								 [_searchHistoryTableView.topAnchor constraintEqualToAnchor:_searchBar.bottomAnchor],
+								 [_searchHistoryTableView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
+								 [_searchHistoryTableView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
+								 [_searchHistoryTableView.heightAnchor constraintLessThanOrEqualToConstant:cellHeight * 3.5]
 								 ]];
 }
 
@@ -146,7 +177,28 @@ static const CGFloat cellInsets = 16.f;
 	[self.searchBar resignFirstResponder];
 	[self.spinner startAnimating];
 	self.lastSearch = searchBar.text;
+	self.searchHistoryTableView.hidden = YES;
 	[self.networkService findFlickrPhotosWithSearchString:searchBar.text];
+	[self.searchHistoryService userSearchedForText:searchBar.text];
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+	searchBar.text = @"";
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+	[self.searchHistoryService userEditedSearchFieldWithText:searchBar.text];
+}
+
+#pragma mark - SearchHistoryOutputProtocol
+
+- (void)showSearchSuggestions:(NSArray<NSString *> *)suggestions
+{
+	self.searchSuggestions = suggestions;
+	self.searchHistoryTableView.hidden = NO;
+	[self.searchHistoryTableView reloadData];
 }
 
 
@@ -159,7 +211,7 @@ static const CGFloat cellInsets = 16.f;
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	SBSFlickrPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseID forIndexPath:indexPath];
+	SBSFlickrPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:SBSImagesCollectionReuseID forIndexPath:indexPath];
 	[cell configureCellWithImage:self.images[indexPath.row]];
 	return cell;
 }
@@ -202,6 +254,32 @@ static const CGFloat cellInsets = 16.f;
 	UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"Whatever" style:UIAlertActionStyleDefault handler:nil];
 	[alert addAction:dismiss];
 	[self presentViewController:alert animated:YES completion:nil];
+}
+
+
+#pragma mark - UITableViewDataSource Protocol
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return self.searchSuggestions.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SBSSearchHistoryReuseID];
+	cell.textLabel.text = self.searchSuggestions[indexPath.row];
+	cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.7];
+	cell.selectionStyle = UITableViewCellSelectionStyleNone;
+	return cell;
+}
+
+
+#pragma mark - UITableViewDelegate Protocol
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	self.searchBar.text = self.searchSuggestions[indexPath.row];
+	[self performSelector:@selector(searchBarSearchButtonClicked:) withObject:self.searchBar];
 }
 
 @end

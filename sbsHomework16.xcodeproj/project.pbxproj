@@ -17,6 +17,7 @@
 		9C184A0B22BF669A006A31BB /* NetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C184A0A22BF669A006A31BB /* NetworkHelper.m */; };
 		9C184A1522C33909006A31BB /* LocalNotificationsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C184A1422C33909006A31BB /* LocalNotificationsService.m */; };
 		9C184A6B22C7643A006A31BB /* SBSFlickrModuleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C184A6A22C7643A006A31BB /* SBSFlickrModuleFactory.m */; };
+		9C8B2FD622C7DF9400D8EC84 /* SearchHistoryService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B2FD522C7DF9400D8EC84 /* SearchHistoryService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,9 @@
 		9C184A6822C75754006A31BB /* LocalNotificationsProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalNotificationsProtocol.h; sourceTree = "<group>"; };
 		9C184A6922C7643A006A31BB /* SBSFlickrModuleFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBSFlickrModuleFactory.h; sourceTree = "<group>"; };
 		9C184A6A22C7643A006A31BB /* SBSFlickrModuleFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBSFlickrModuleFactory.m; sourceTree = "<group>"; };
+		9C8B2FD422C7DF9400D8EC84 /* SearchHistoryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchHistoryService.h; sourceTree = "<group>"; };
+		9C8B2FD522C7DF9400D8EC84 /* SearchHistoryService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchHistoryService.m; sourceTree = "<group>"; };
+		9C8B2FD722C7DFA800D8EC84 /* SearchHistoryProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchHistoryProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 		9C184A0422BF65B5006A31BB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				9C8B2FD322C7DF7800D8EC84 /* SearchHistoryService */,
 				9C184A1222C338F4006A31BB /* LocalNotifications */,
 				9C184A1122C338EB006A31BB /* Networking */,
 			);
@@ -167,6 +172,16 @@
 				9C184A6A22C7643A006A31BB /* SBSFlickrModuleFactory.m */,
 			);
 			name = Factory;
+			sourceTree = "<group>";
+		};
+		9C8B2FD322C7DF7800D8EC84 /* SearchHistoryService */ = {
+			isa = PBXGroup;
+			children = (
+				9C8B2FD722C7DFA800D8EC84 /* SearchHistoryProtocol.h */,
+				9C8B2FD422C7DF9400D8EC84 /* SearchHistoryService.h */,
+				9C8B2FD522C7DF9400D8EC84 /* SearchHistoryService.m */,
+			);
+			name = SearchHistoryService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +256,7 @@
 				9C1849FF22BF6224006A31BB /* SBSFlickrPhotoCell.m in Sources */,
 				9C1849EC22BF5568006A31BB /* SBSFlickrCollectionViewController.m in Sources */,
 				9C184A0B22BF669A006A31BB /* NetworkHelper.m in Sources */,
+				9C8B2FD622C7DF9400D8EC84 /* SearchHistoryService.m in Sources */,
 				9C184A1522C33909006A31BB /* LocalNotificationsService.m in Sources */,
 				9C184A6B22C7643A006A31BB /* SBSFlickrModuleFactory.m in Sources */,
 				9C1849F722BF556A006A31BB /* main.m in Sources */,
