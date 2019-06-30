@@ -10,18 +10,22 @@
 #import "NetworkServiceProtocol.h"
 #import "LocalNotificationsProtocol.h"
 #import "SearchHistoryProtocol.h"
+#import "PhotoFiltersProtocol.h"
 @class NetworkService;
 @class LocalNotificationsService;
 @class SearchHistoryService;
+@class PhotoFiltersService;
 
 
 @interface SBSFlickrCollectionViewController : UIViewController <NetworkServiceOutputProtocol,
 																LocalNotificationsOutputProtocol,
-																SearchHistoryOutputProtocol>
+																SearchHistoryOutputProtocol,
+																PhotoFiltersOutputProtocol>
 
 - (instancetype)initWithNetworkService:(NetworkService *)networkService
 				   notificationService:(LocalNotificationsService *)notificationService
-				  searchHistoryService:(SearchHistoryService *)searchHistoryService;
+				  searchHistoryService:(SearchHistoryService *)searchHistoryService
+				   photoFiltersService:(PhotoFiltersService *)photoFiltersService;
 
 @end
 
