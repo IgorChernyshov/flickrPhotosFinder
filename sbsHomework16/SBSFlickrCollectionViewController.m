@@ -11,6 +11,7 @@
 #import "NetworkService.h"
 #import "LocalNotificationsService.h"
 #import "SearchHistoryService.h"
+#import "PhotoFiltersService.h"
 @import UserNotifications;
 
 
@@ -29,12 +30,14 @@ static const CGFloat cellHeight = 40.f;
 
 @property (nonatomic, strong) NSArray<NSString *> *searchSuggestions;
 @property (nonatomic, strong) NSMutableArray<UIImage *> *images;
+@property (nonatomic, strong) NSArray<UIImage *> *initialImages;
 @property (nonatomic, assign) NSInteger numberOfImagesFound;
 @property (nonatomic, copy) NSString *lastSearch;
 
 @property (nonatomic, strong) NetworkService *networkService;
 @property (nonatomic, strong) LocalNotificationsService *notificationService;
 @property (nonatomic, strong) SearchHistoryService *searchHistoryService;
+@property (nonatomic, strong) PhotoFiltersService *photoFiltersService;
 
 @end
 
@@ -46,14 +49,15 @@ static const CGFloat cellHeight = 40.f;
 
 - (instancetype)initWithNetworkService:(NetworkService *)networkService
 				   notificationService:(LocalNotificationsService *)notificationService
-				  searchHistoryService:(SearchHistoryService *)searchHistoryService;
+				  searchHistoryService:(SearchHistoryService *)searchHistoryService
+				   photoFiltersService:(PhotoFiltersService *)photoFiltersService;
 {
 	self = [super init];
 	if (self) {
 		_networkService = networkService;
 		_notificationService = notificationService;
 		_searchHistoryService = searchHistoryService;
-		_images = [NSMutableArray new];
+		_photoFiltersService = photoFiltersService;
 		
 		[self createUI];
 		[self setupConstraints];
@@ -168,11 +172,37 @@ static const CGFloat cellHeight = 40.f;
 }
 
 
+#pragma mark - PhotoFiltersOutputProtocol
+
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+	if(event.type == UIEventSubtypeMotionShake)
+	{
+		[self.searchBar resignFirstResponder];
+		
+		// Backup images without filters
+		if (self.images[0].CGImage != nil)
+		{
+			self.initialImages = [self.images copy];
+		}
+		[self.spinner startAnimating];
+		[self.photoFiltersService applyRandomFilterToImages:self.initialImages];
+	}
+}
+
+-(void)appliedFiltersToImages:(NSArray<UIImage *> *)images
+{
+	self.images = images.mutableCopy;
+	[self.collectionView reloadData];
+	[self.spinner stopAnimating];
+}
+
+
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-	[self.images removeAllObjects];
+	self.images = [NSMutableArray new];
 	[self.collectionView reloadData];
 	[self.searchBar resignFirstResponder];
 	[self.spinner startAnimating];
