@@ -17,8 +17,10 @@
 
 - (void)findFlickrPhotosWithSearchString:(NSString *)searchString
 {
-	NSString *urlString = [NetworkHelper URLForSearchString:searchString];
-	urlString = [urlString stringByReplacingOccurrencesOfString:@" " withString:@""];
+	NSString *restrictedCharacters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+	NSCharacterSet *charactersToFilter = [[NSCharacterSet characterSetWithCharactersInString:restrictedCharacters] invertedSet];
+	NSString *filteredString = [[searchString componentsSeparatedByCharactersInSet:charactersToFilter] componentsJoinedByString:@""];
+	NSString *urlString = [NetworkHelper URLForSearchString:filteredString];
 	
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 	[request setURL:[NSURL URLWithString: urlString]];

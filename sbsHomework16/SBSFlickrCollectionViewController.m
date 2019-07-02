@@ -210,11 +210,13 @@ static const CGFloat cellHeight = 40.f;
 	self.searchHistoryTableView.hidden = YES;
 	[self.networkService findFlickrPhotosWithSearchString:searchBar.text];
 	[self.searchHistoryService userSearchedForText:searchBar.text];
+	searchBar.text = @"👋🏻 Shake to apply filters";
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
 	searchBar.text = @"";
+	[self.searchHistoryService userEditedSearchFieldWithText:@""];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText

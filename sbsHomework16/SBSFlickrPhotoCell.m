@@ -42,13 +42,6 @@
 
 #pragma mark - UI Configuration
 
-- (UIImageView *)createBlurredBackgroundView
-{
-	UIImageView *blurredBackgroundView = [UIImageView new];
-	blurredBackgroundView.translatesAutoresizingMaskIntoConstraints = NO;
-	return blurredBackgroundView;
-}
-
 - (UIImageView *)createImageView
 {
 	UIImageView *imageView = [UIImageView new];

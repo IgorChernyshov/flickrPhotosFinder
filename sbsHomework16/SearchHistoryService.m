@@ -39,17 +39,28 @@ static NSString * const searchHistory = @"searchHistory";
 - (void)userEditedSearchFieldWithText:(NSString *)text
 {
 	NSArray<NSString *> *userSearches = [self.userDefaults arrayForKey:searchHistory];
+	if (text.length == 0)
+	{
+		NSArray *reversedSearchHistory = [[userSearches reverseObjectEnumerator] allObjects];
+		[self.output showSearchSuggestions:reversedSearchHistory];
+		return;
+	}
 	NSMutableArray<NSString *> *searchSuggestions = [NSMutableArray new];
 	for (NSString *search in userSearches) {
 		if ([search.lowercaseString containsString:text.lowercaseString]) {
 			[searchSuggestions addObject:search];
 		}
 	}
-	[self.output showSearchSuggestions:[searchSuggestions copy]];
+	NSArray *reversedSearchHistory = [[searchSuggestions reverseObjectEnumerator] allObjects];
+	[self.output showSearchSuggestions:[reversedSearchHistory copy]];
 }
 
 - (void)userSearchedForText:(NSString *)text
 {
+	if (text.length == 0)
+	{
+		return;
+	}
 	NSMutableArray<NSString *> *userSearches = [NSMutableArray new];
 	[userSearches addObjectsFromArray:[self.userDefaults arrayForKey:searchHistory]];
 	if ([userSearches containsObject:text])
