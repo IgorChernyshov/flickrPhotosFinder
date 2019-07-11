@@ -17,12 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface SBSFlickrPhotoCell : UICollectionViewCell
 
-/**
- Устанавливает изображение в главный UIImageView ячейки.
-
- @param image Изображение которое будет отображаться в ячейке.
- */
-- (void)configureCellWithImage:(UIImage *)image;
+@property (nonatomic, strong) UIImageView *imageView;
 
 @end
 

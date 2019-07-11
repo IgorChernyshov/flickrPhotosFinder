@@ -9,13 +9,6 @@
 #import "SBSFlickrPhotoCell.h"
 
 
-@interface SBSFlickrPhotoCell ()
-
-@property (nonatomic, strong) UIImageView *imageView;
-
-@end
-
-
 @implementation SBSFlickrPhotoCell
 
 
@@ -26,9 +19,7 @@
 	self = [super initWithFrame:frame];
 	if (self) {
 		_imageView = [self createImageView];
-		_imageView.contentMode = UIViewContentModeScaleAspectFit;
 		[self.contentView addSubview:_imageView];
-		
 		[self setupConstraints];
 	}
 	return self;
@@ -46,6 +37,7 @@
 {
 	UIImageView *imageView = [UIImageView new];
 	imageView.translatesAutoresizingMaskIntoConstraints = NO;
+	imageView.contentMode = UIViewContentModeScaleAspectFit;
 	return imageView;
 }
 
@@ -57,14 +49,6 @@
 									   [_imageView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],
 									   [_imageView.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor]
 									   ]];
-}
-
-
-#pragma mark - Public Methods
-
-- (void)configureCellWithImage:(UIImage *)image
-{
-	self.imageView.image = image;
 }
 
 @end

@@ -244,7 +244,7 @@ static const CGFloat cellHeight = 40.f;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	SBSFlickrPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:SBSImagesCollectionReuseID forIndexPath:indexPath];
-	[cell configureCellWithImage:self.images[indexPath.row]];
+	cell.imageView.image = self.images[indexPath.row];
 	return cell;
 }
 

@@ -33,11 +33,13 @@
 
 - (UIImage *)imageAfterApplyingFilter:(CIFilter *)filter toImage:(UIImage *)image
 {
+	CIContext *context = [CIContext contextWithOptions:nil];
 	CIImage *ciimage = [CIImage imageWithCGImage:image.CGImage];
 	[filter setValue:ciimage forKey:kCIInputImageKey];
 	ciimage = [filter outputImage];
-	UIImage *imageWithFilter = [UIImage imageWithCIImage:ciimage];
-	
+	CGImageRef cgimage = [context createCGImage:ciimage fromRect:[ciimage extent]];
+	UIImage *imageWithFilter = [UIImage imageWithCGImage:cgimage];
+	CGImageRelease(cgimage);
 	return imageWithFilter;
 }
 
