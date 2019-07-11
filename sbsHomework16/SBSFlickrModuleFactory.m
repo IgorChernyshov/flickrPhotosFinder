@@ -7,6 +7,7 @@
 //
 
 #import "SBSFlickrModuleFactory.h"
+#import "SBSFlickrCollectionViewController.h"
 #import "NetworkService.h"
 #import "LocalNotificationsService.h"
 #import "SearchHistoryService.h"
@@ -15,7 +16,7 @@
 
 @implementation SBSFlickrModuleFactory
 
-+ (SBSFlickrCollectionViewController *)buildFlickrModule
++ (UIViewController *)buildFlickrModule
 {
 	NetworkService *networkService = [NetworkService new];
 	LocalNotificationsService *notificationService = [LocalNotificationsService new];

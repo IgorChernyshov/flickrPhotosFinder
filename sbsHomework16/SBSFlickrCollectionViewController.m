@@ -28,9 +28,9 @@ static const CGFloat cellHeight = 40.f;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UITableView *searchHistoryTableView;
 
-@property (nonatomic, strong) NSArray<NSString *> *searchSuggestions;
+@property (nonatomic, copy) NSArray<NSString *> *searchSuggestions;
 @property (nonatomic, strong) NSMutableArray<UIImage *> *images;
-@property (nonatomic, strong) NSArray<UIImage *> *initialImages;
+@property (nonatomic, copy) NSArray<UIImage *> *initialImages;
 @property (nonatomic, assign) NSInteger numberOfImagesFound;
 @property (nonatomic, copy) NSString *lastSearch;
 

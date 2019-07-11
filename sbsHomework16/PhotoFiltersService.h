@@ -6,16 +6,18 @@
 //  Copyright © 2019 Igor Chernyshov. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "PhotoFiltersProtocol.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
 
 
+/**
+ Сервис фото-фильтров. Применяет фильтры к изображению и возвращает изображения делегату.
+ */
 @interface PhotoFiltersService : NSObject <PhotoFiltersInputProtocol>
 
-@property (nonatomic, weak) id<PhotoFiltersOutputProtocol> output;
+@property (nonatomic, weak) id<PhotoFiltersOutputProtocol> output; /**< Делегат, которому передаётся обработанное изображение. */
 
 @end
 

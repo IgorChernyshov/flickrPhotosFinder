@@ -27,7 +27,8 @@ static NSString * const searchHistory = @"searchHistory";
 - (instancetype)init
 {
 	self = [super init];
-	if (self) {
+	if (self)
+	{
 		_userDefaults = [NSUserDefaults standardUserDefaults];
 	}
 	return self;
@@ -52,7 +53,7 @@ static NSString * const searchHistory = @"searchHistory";
 		}
 	}
 	NSArray *reversedSearchHistory = [[searchSuggestions reverseObjectEnumerator] allObjects];
-	[self.output showSearchSuggestions:[reversedSearchHistory copy]];
+	[self.output showSearchSuggestions:reversedSearchHistory];
 }
 
 - (void)userSearchedForText:(NSString *)text

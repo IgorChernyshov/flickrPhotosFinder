@@ -101,9 +101,7 @@
 		9C184A0122BF6241006A31BB /* Flow */ = {
 			isa = PBXGroup;
 			children = (
-				9C184A6D22C76447006A31BB /* Factory */,
-				9C184A0C22C337B7006A31BB /* Controller */,
-				9C184A0222BF624F006A31BB /* View */,
+				9CAF12DD22D64ED0001528E7 /* Main */,
 			);
 			name = Flow;
 			sourceTree = "<group>";
@@ -197,6 +195,16 @@
 				9C8B2FE422C90F8C00D8EC84 /* PhotoFiltersService.m */,
 			);
 			name = FiltersService;
+			sourceTree = "<group>";
+		};
+		9CAF12DD22D64ED0001528E7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				9C184A6D22C76447006A31BB /* Factory */,
+				9C184A0C22C337B7006A31BB /* Controller */,
+				9C184A0222BF624F006A31BB /* View */,
+			);
+			name = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

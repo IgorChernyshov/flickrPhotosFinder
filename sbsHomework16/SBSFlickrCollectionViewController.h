@@ -6,26 +6,34 @@
 //  Copyright © 2019 Igor Chernyshov. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "NetworkServiceProtocol.h"
 #import "LocalNotificationsProtocol.h"
 #import "SearchHistoryProtocol.h"
 #import "PhotoFiltersProtocol.h"
-@class NetworkService;
-@class LocalNotificationsService;
-@class SearchHistoryService;
-@class PhotoFiltersService;
 
 
+/**
+ Главный экран приложения.
+ */
 @interface SBSFlickrCollectionViewController : UIViewController <NetworkServiceOutputProtocol,
 																LocalNotificationsOutputProtocol,
 																SearchHistoryOutputProtocol,
 																PhotoFiltersOutputProtocol>
 
-- (instancetype)initWithNetworkService:(NetworkService *)networkService
-				   notificationService:(LocalNotificationsService *)notificationService
-				  searchHistoryService:(SearchHistoryService *)searchHistoryService
-				   photoFiltersService:(PhotoFiltersService *)photoFiltersService;
+/**
+ Инициализатор View Controller'а со всеми необходимыми сервисами.
+
+ @param networkService Сетевой сервис.
+ @param notificationService Сервис локальных оповещений.
+ @param searchHistoryService Сервис истории поиска.
+ @param photoFiltersService Сервис применения фото-фильтров.
+ @return Настроенный View Controller главного экрана приложения.
+ */
+- (instancetype)initWithNetworkService:(id<NetworkServiceInputProtocol>)networkService
+				   notificationService:(id<LocalNotificationsInputProtocol>)notificationService
+				  searchHistoryService:(id<SearchHistoryInputProtocol>)searchHistoryService
+				   photoFiltersService:(id<PhotoFiltersInputProtocol>)photoFiltersService;
 
 @end
 

@@ -9,16 +9,38 @@
 @import UIKit;
 
 
-@protocol NetworkServiceOutputProtocol <NSObject>
+/**
+ Протокол делегата сервиса сетевых операций.
+ */
+@protocol NetworkServiceInputProtocol <NSObject>
 
-- (void)downloadFinishedWithImage:(UIImage *)image;
-- (void)searchFinishedWithNumberOfImages:(NSUInteger)numberOfImages;
+/**
+ Метод поиска изображений по поисковому запросу.
+ 
+ @param searchString Поисковый запрос.
+ */
+- (void)findFlickrPhotosWithSearchString:(NSString *)searchString;
 
 @end
 
 
-@protocol NetworkServiceInputProtocol <NSObject>
+/**
+ Протокол input'а сервиса сетевых операций.
+ */
+@protocol NetworkServiceOutputProtocol <NSObject>
 
-- (void)findFlickrPhotosWithSearchString:(NSString *)searchString;
+/**
+ Метод вызывается при окончании загрузки изображения.
+
+ @param image Загруженное изображение.
+ */
+- (void)downloadFinishedWithImage:(UIImage *)image;
+
+/**
+ Метод вызывается по окончании поиска изображений.
+
+ @param numberOfImages Количество найденных изображений.
+ */
+- (void)searchFinishedWithNumberOfImages:(NSUInteger)numberOfImages;
 
 @end

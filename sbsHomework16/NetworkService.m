@@ -40,7 +40,7 @@
 															   return;
 														   }
 														   NSDictionary *temp = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-														   NSArray<NSURL *> *urls = [self photoURLWithData:temp];
+														   NSArray<NSURL *> *urls = [self photoURLsFromData:temp];
 														   [self.output searchFinishedWithNumberOfImages:urls.count];
 														   [self downloadImagesWithURLs:urls];
 													   }];
@@ -50,7 +50,7 @@
 
 #pragma mark - Private
 
-- (NSArray<NSURL *> *)photoURLWithData:(NSDictionary *)data
+- (NSArray<NSURL *> *)photoURLsFromData:(NSDictionary *)data
 {
 	NSDictionary *photos = data[@"photos"][@"photo"];
 	NSMutableArray<NSURL *> *urls = [NSMutableArray new];
