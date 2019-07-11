@@ -6,14 +6,22 @@
 //  Copyright © 2019 Igor Chernyshov. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 
 NS_ASSUME_NONNULL_BEGIN
 
 
+/**
+ Ячейка Collection View для отображения изображений на главном экране приолжения.
+ */
 @interface SBSFlickrPhotoCell : UICollectionViewCell
 
+/**
+ Устанавливает изображение в главный UIImageView ячейки.
+
+ @param image Изображение которое будет отображаться в ячейке.
+ */
 - (void)configureCellWithImage:(UIImage *)image;
 
 @end

@@ -6,16 +6,23 @@
 //  Copyright © 2019 Igor Chernyshov. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "SBSFlickrCollectionViewController.h"
+@import UIKit;
 
 
 NS_ASSUME_NONNULL_BEGIN
 
 
+/**
+ Фабрика главного модуля приложения.
+ */
 @interface SBSFlickrModuleFactory : NSObject
 
-+ (SBSFlickrCollectionViewController *)buildFlickrModule;
+/**
+ Создаёт главный модуль приложения.
+
+ @return Модуль с инжектированными зависимостями.
+ */
++ (UIViewController *)buildFlickrModule;
 
 @end
 
